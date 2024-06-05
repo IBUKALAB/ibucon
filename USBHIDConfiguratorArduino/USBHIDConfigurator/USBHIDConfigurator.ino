@@ -19,38 +19,6 @@ volatile int enc2Pos = 0;
 volatile bool enc2Updated = false;
 
 String buttonConfigs[3] = {"A", "B", "C"}; // ボタンの設定を保存する配列
-String wheelConfigs[2] = {"スクロール1", "スクロール2"}; // スクロールホイールの設定を保存する配列
-
-void setup() {
-  for (int i = 0; i < 3; i++) {
-    pinMode(buttonPins[i], INPUT_PULLUP);
-  }
-  pinMode(swPin, INPUT_PULLUP);
-  pinMode(enc1Apin, INPUT_PULLUP);
-  pin### 修正されたArduinoコード（最新のWindowsアプリに対応）
-
-```cpp
-#include "Keyboard.h"
-#include "Mouse.h"
-
-const int buttonPins[] = {0, 1, 2}; // モーメンタリースイッチを接続するピン番号
-char keysToSend[] = {'A', 'B', 'C'}; // 各ボタンに対応するデフォルトキー
-
-const int vrxPin = A3; // アナログジョイスティックX軸
-const int vryPin = A4; // アナログジョイスティックY軸
-const int swPin = 5; // ジョイスティックスイッチ
-
-const int enc1Apin = 6; // エンコーダ1のAピン
-const int enc1Bpin = 7; // エンコーダ1のBピン
-const int enc2Apin = 8; // エンコーダ2のAピン
-const int enc2Bpin = 9; // エンコーダ2のBピン
-
-volatile int enc1Pos = 0;
-volatile bool enc1Updated = false;
-volatile int enc2Pos = 0;
-volatile bool enc2Updated = false;
-
-String buttonConfigs[3] = {"A", "B", "C"}; // ボタンの設定を保存する配列
 String wheelConfigs[2] = {"Scroll1", "Scroll2"}; // スクロールホイールの設定を保存する配列
 
 void setup() {
@@ -194,14 +162,14 @@ void sendScroll(int delta, String config) {
   if (config.startsWith("Shift+")) {
     Keyboard.press(KEY_LEFT_SHIFT);
     if (config.endsWith("スクロール1")) {
-      Mouse.scroll(delta);
+      // TODO
     } else if (config.endsWith("スクロール2")) {
       Mouse.move(delta, 0);
     }
     Keyboard.release(KEY_LEFT_SHIFT);
   } else {
     if (config == "スクロール1") {
-      Mouse.scroll(delta);
+      // TODO
     } else if (config == "スクロール2") {
       Mouse.move(delta, 0);
     }
