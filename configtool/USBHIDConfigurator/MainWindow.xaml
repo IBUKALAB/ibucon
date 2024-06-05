@@ -1,0 +1,112 @@
+﻿<Window x:Class="USBHIDConfigurator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="USB HID Configurator" Height="350" Width="525">
+    <Grid>
+        <StackPanel>
+            <Label Content="Switch 1" />
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="Switch1Mod1" Width="80" Margin="5">
+                    <ComboBoxItem Content="空白" />
+                    <ComboBoxItem Content="Shift" />
+                    <ComboBoxItem Content="Control" />
+                    <ComboBoxItem Content="Alt" />
+                    <ComboBoxItem Content="Function" />
+                </ComboBox>
+                <ComboBox x:Name="Switch1Mod2" Width="80" Margin="5">
+                    <ComboBoxItem Content="空白" />
+                    <ComboBoxItem Content="Shift" />
+                    <ComboBoxItem Content="Control" />
+                    <ComboBoxItem Content="Alt" />
+                    <ComboBoxItem Content="Function" />
+                </ComboBox>
+                <ComboBox x:Name="Switch1Key" Width="80" Margin="5">
+                    <ComboBoxItem Content="A" />
+                    <ComboBoxItem Content="B" />
+                    <ComboBoxItem Content="C" />
+                    <!-- 他のキーも追加 -->
+                </ComboBox>
+            </StackPanel>
+
+            <Label Content="Switch 2" />
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="Switch2Mod1" Width="80" Margin="5">
+                    <ComboBoxItem Content="空白" />
+                    <ComboBoxItem Content="Shift" />
+                    <ComboBoxItem Content="Control" />
+                    <ComboBoxItem Content="Alt" />
+                    <ComboBoxItem Content="Function" />
+                </ComboBox>
+                <ComboBox x:Name="Switch2Mod2" Width="80" Margin="5">
+                    <ComboBoxItem Content="空白" />
+                    <ComboBoxItem Content="Shift" />
+                    <ComboBoxItem Content="Control" />
+                    <ComboBoxItem Content="Alt" />
+                    <ComboBoxItem Content="Function" />
+                </ComboBox>
+                <ComboBox x:Name="Switch2Key" Width="80" Margin="5">
+                    <ComboBoxItem Content="A" />
+                    <ComboBoxItem Content="B" />
+                    <ComboBoxItem Content="C" />
+                    <!-- 他のキーも追加 -->
+                </ComboBox>
+            </StackPanel>
+
+            <Label Content="Switch 3" />
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="Switch3Mod1" Width="80" Margin="5">
+                    <ComboBoxItem Content="空白" />
+                    <ComboBoxItem Content="Shift" />
+                    <ComboBoxItem Content="Control" />
+                    <ComboBoxItem Content="Alt" />
+                    <ComboBoxItem Content="Function" />
+                </ComboBox>
+                <ComboBox x:Name="Switch3Mod2" Width="80" Margin="5">
+                    <ComboBoxItem Content="空白" />
+                    <ComboBoxItem Content="Shift" />
+                    <ComboBoxItem Content="Control" />
+                    <ComboBoxItem Content="Alt" />
+                    <ComboBoxItem Content="Function" />
+                </ComboBox>
+                <ComboBox x:Name="Switch3Key" Width="80" Margin="5">
+                    <ComboBoxItem Content="A" />
+                    <ComboBoxItem Content="B" />
+                    <ComboBoxItem Content="C" />
+                    <!-- 他のキーも追加 -->
+                </ComboBox>
+            </StackPanel>
+
+            <Label Content="Wheel 1" />
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="Wheel1Mod" Width="80" Margin="5">
+                    <ComboBoxItem Content="空白" />
+                    <ComboBoxItem Content="Shift" />
+                    <ComboBoxItem Content="Control" />
+                    <ComboBoxItem Content="Alt" />
+                    <ComboBoxItem Content="Function" />
+                </ComboBox>
+                <ComboBox x:Name="Wheel1Scroll" Width="80" Margin="5">
+                    <ComboBoxItem Content="スクロール1" />
+                    <ComboBoxItem Content="スクロール2" />
+                </ComboBox>
+            </StackPanel>
+
+            <Label Content="Wheel 2" />
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="Wheel2Mod" Width="80" Margin="5">
+                    <ComboBoxItem Content="空白" />
+                    <ComboBoxItem Content="Shift" />
+                    <ComboBoxItem Content="Control" />
+                    <ComboBoxItem Content="Alt" />
+                    <ComboBoxItem Content="Function" />
+                </ComboBox>
+                <ComboBox x:Name="Wheel2Scroll" Width="80" Margin="5">
+                    <ComboBoxItem Content="スクロール1" />
+                    <ComboBoxItem Content="スクロール2" />
+                </ComboBox>
+            </StackPanel>
+
+            <Button Content="送信" Click="SendConfig" Width="100" Margin="10" />
+        </StackPanel>
+    </Grid>
+</Window>
