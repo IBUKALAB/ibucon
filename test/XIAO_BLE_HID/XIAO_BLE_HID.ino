@@ -8,10 +8,10 @@
 #include <HIDKeyboardTypes.h> // キーボード用HIDタイプ
 
 // MCP23S17のSPI接続ピンの定義
-#define MCP_CS_PIN 7    // チップセレクトピン（XIAO ESP32C6のD7）
-#define MCP_MOSI_PIN 10 // MOSIピン（XIAO ESP32C6のD10）
-#define MCP_MISO_PIN 9  // MISOピン（XIAO ESP32C6のD9）
-#define MCP_SCK_PIN 8   // SCKピン（XIAO ESP32C6のD8）
+#define MCP_CS_PIN 17     // チップセレクトピン（XIAO ESP32C6のD7）
+#define MCP_MOSI_PIN MOSI // MOSIピン（XIAO ESP32C6のD10）
+#define MCP_MISO_PIN MISO // MISOピン（XIAO ESP32C6のD9）
+#define MCP_SCK_PIN SCK   // SCKピン（XIAO ESP32C6のD8）
 
 // MCP23S17のインスタンス作成
 Adafruit_MCP23X17 mcp;
