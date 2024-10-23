@@ -125,69 +125,50 @@ void loop()
 {
   static uint8_t prevButtonState = 0xFF; // 初期状態はすべてHIGH（未押下）
 
-  if (deviceConnected)
+  // MCP23S17からGPBポートの状態を読み取る
+  uint16_t gpioState = mcp.readGPIOAB();
+  uint8_t buttonState = (gpioState >> 8) & 0xFF; // GPBポートの状態
+
+  // 各ボタンの状態を出力
+  Serial.print("ボタンの状態: ");
+  for (uint8_t i = 0; i < 5; i++)
   {
-    // MCP23S17からGPBポートの状態を読み取る
-    uint16_t gpioState = mcp.readGPIOAB();
-    uint8_t buttonState = (gpioState >> 8) & 0xFF; // GPBポートの状態
+    bool state = buttonState & (1 << i);
+    Serial.print("GPB");
+    Serial.print(i);
+    Serial.print(": ");
+    Serial.print(state ? "HIGH" : "LOW");
+    Serial.print(" ");
+  }
+  Serial.println();
 
-    // 各ボタンの状態を出力
-    Serial.print("ボタンの状態: ");
-    for (uint8_t i = 0; i < 5; i++)
+  // ボタンの状態変化を検出
+  uint8_t changedButtons = buttonState ^ prevButtonState;
+
+  // 各ボタンの状態をチェック（プルアップのため押下時は0）
+  for (uint8_t i = 0; i < 5; i++)
+  {
+    if (changedButtons & (1 << i))
     {
-      bool state = buttonState & (1 << i);
-      Serial.print("GPB");
-      Serial.print(i);
-      Serial.print(": ");
-      Serial.print(state ? "HIGH" : "LOW");
-      Serial.print(" ");
-    }
-    Serial.println();
-
-    // ボタンの状態変化を検出
-    uint8_t changedButtons = buttonState ^ prevButtonState;
-
-    // 各ボタンの状態をチェック（プルアップのため押下時は0）
-    for (uint8_t i = 0; i < 5; i++)
-    {
-      if (changedButtons & (1 << i))
+      // 状態が変化したボタン
+      if (!(buttonState & (1 << i)))
       {
-        // 状態が変化したボタン
-        if (!(buttonState & (1 << i)))
-        {
-          // ボタンが押された
-          uint8_t keycode = 0x04 + i; // 'a'から'e'のキーコード
-          sendKey(keycode);
-          Serial.print("キー ");
-          Serial.print((char)('a' + i));
-          Serial.println(" が押されました");
-        }
+        // ボタンが押された
+        uint8_t keycode = 0x04 + i; // 'a'から'e'のキーコード
+        sendKey(keycode);
+        Serial.print("キー ");
+        Serial.print((char)('a' + i));
+        Serial.println(" が押されました");
       }
     }
-
-    prevButtonState = buttonState;
-
-    delay(50); // デバウンス処理
   }
-  else
-  {
-    delay(500);
-  }
+
+  prevButtonState = buttonState;
+
+  delay(50); // デバウンス処理
 }
 
 // キー入力を送信する関数
 void sendKey(uint8_t keycode)
 {
-  uint8_t keyReport[8] = {0}; // 修飾キー、予約、キーコード[6]
-  keyReport[2] = keycode;     // 最初のキーコードに設定
-
-  inputKeyboard->setValue(keyReport, sizeof(keyReport));
-  inputKeyboard->notify();
-
-  delay(10); // キー押下の持続時間
-
-  // キーリリース
-  memset(keyReport, 0, sizeof(keyReport));
-  inputKeyboard->setValue(keyReport, sizeof(keyReport));
-  inputKeyboard->notify();
 }
