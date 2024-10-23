@@ -59,7 +59,7 @@ void setup()
   Serial.println("BLE HIDキーボードを起動します");
 
   // SPIの初期化
-  SPI.begin(MCP_SCK_PIN, MCP_MISO_PIN, MCP_MOSI_PIN, MCP_CS_PIN);
+  SPI.begin(MCP_SCK_PIN, MCP_MISO_PIN, MCP_MOSI_PIN);
 
   // MCP23S17の初期化
   if (!mcp.begin_SPI(MCP_CS_PIN))
